@@ -1,13 +1,10 @@
-const dataFurniking = [
-  {
-    id: 1,
-    text: "Name",
-    price: 17,
-    description:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum explicabo vel quidem dolor eligendi mollitia.",
-  },
-];
-
+const url = `https://fakestoreapi.com/products`;
+fetch(url)
+      .then(response => response.json())
+      .then(data => console.log(data))
+window.addEventListener("DOMContentLoaded", function () {
+  let 
+})
 const tabsParent = document.querySelector(".sec1__List");
 const tabs = document.querySelectorAll(".hero-item");
 const tabsContent = document.querySelectorAll(".tabcontent");
@@ -41,8 +38,7 @@ tabsParent.addEventListener("click", (event) => {
       if (target === item) {
         hideTabContent();
         showTabContent(idx);
-        itemHeroText.innerHTML = item.textContent.toUpperCase(item);
-        textNameSlide.innerHTML = item.textContent;
+
       }
     });
   }
