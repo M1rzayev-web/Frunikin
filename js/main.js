@@ -1,36 +1,47 @@
 const tabs = document.querySelectorAll(".sec4__Name-item");
-const tabsParent = document.querySelector(".sec4__Name-List");
 const tabsContent = document.querySelectorAll(".sec4__Cards");
-function hideTabContent() {
-  tabsContent.forEach((item) => {
-    item.classList.remove("DeActiveContent");
-    item.classList.add("ActiveContent");
+const TrendingTabs = document.querySelectorAll(".trending-item");
+const TrendingContent = document.querySelectorAll(".trending-items");
+
+const showContent = (elements, tabs, index) => {
+  elements.forEach((item, i) => {
+    const isActive = i === index;
+    item.classList.toggle("ActiveContent", isActive);
+    item.classList.toggle("DeActiveContent", !isActive);
   });
 
   tabs.forEach((item, i) => {
+    const isActive = i === index;
+    item.classList.toggle("Active-Text", isActive);
+    item.classList.toggle("DeActive-Text", !isActive);
+  });
+};
+
+const hideContent = (elements, tabs) => {
+  elements.forEach((item) => {
+    item.classList.add("DeActiveContent");
+    item.classList.remove("ActiveContent");
+  });
+  tabs.forEach((item) => {
     item.classList.add("DeActive-Text");
     item.classList.remove("Active-Text");
   });
-}
+};
 
-function showTabContent(i = 0) {
-  tabsContent.forEach((item) => {
-    item.classList.remove("ActiveContent");
-    item.classList.add("DeActiveContent");
-  });
-
-  tabs[i].classList.add("Active-Text");
-  tabs[i].classList.remove("DeActive-Text");
-  tabsContent[i].classList.add("ActiveContent");
-  tabsContent[i].classList.remove("DeActiveContent");
-}
-
-hideTabContent();
-showTabContent();
+// Tanlangan birinchi tabni Active qiling
+showContent(tabsContent, tabs, 0);
+showContent(TrendingContent, TrendingTabs, 0);
 
 tabs.forEach((tab, index) => {
   tab.addEventListener("click", () => {
-    hideTabContent();
-    showTabContent(index);
+    hideContent(tabsContent, tabs);
+    showContent(tabsContent, tabs, index);
+  });
+});
+
+TrendingTabs.forEach((tab, index) => {
+  tab.addEventListener("click", () => {
+    hideContent(TrendingContent, TrendingTabs);
+    showContent(TrendingContent, TrendingTabs, index);
   });
 });
